@@ -23,9 +23,9 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     register: (state, action: PayloadAction<User>) => {
-      // Add the new user to the users array
+     
       state.users.push(action.payload);
-      // Change status to "Registered"
+     
       state.status = "Registered";
     },
     login: (state, action: PayloadAction<{ email: string; password: string }>) => {
@@ -40,7 +40,7 @@ const userSlice = createSlice({
       }
     },
     logout: (state) => {
-      // Reset status to "loggedOut"
+      
       state.loggedInUser = null;
       state.status = "loggedOut";
     },
