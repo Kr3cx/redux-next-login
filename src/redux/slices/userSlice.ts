@@ -23,32 +23,26 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     register: (state, action: PayloadAction<User>) => {
-      const existingUser = state.users.find(
-        (user) => user.email === action.payload.email
-      );
-      if (!existingUser) {
-        state.users.push(action.payload);
-        state.status = "Registered";
-      } else {
-        state.status = "Email already exists";
-      }
+      // Add the new user to the users array
+      state.users.push(action.payload);
+      // Change status to "Registered"
+      state.status = "Registered";
     },
     login: (state, action: PayloadAction<{ email: string; password: string }>) => {
       const user = state.users.find(
-        (user) =>
+        (user: User) =>
           user.email === action.payload.email &&
           user.password === action.payload.password
       );
       if (user) {
         state.loggedInUser = user;
         state.status = "loggedIn";
-      } else {
-        state.status = "loginFailed";
       }
     },
     logout: (state) => {
+      // Reset status to "loggedOut"
       state.loggedInUser = null;
-      state.status = "Telah Log-Out";
+      state.status = "loggedOut";
     },
   },
 });
